@@ -1,4 +1,4 @@
-# 🎲 SYGA Dômy Score Tracker
+# 🁫 SYGA Dômy Score Tracker
 
 Une application web moderne pour compter et gérer les scores des parties de dominos.
 Développée avec React + TypeScript (Vite + Tailwind), elle permet de suivre les parties, gérer les joueurs et conserver l’historique grâce au Local Storage du navigateur.
