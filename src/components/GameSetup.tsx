@@ -10,7 +10,7 @@ interface GameSetupProps {
 const GameSetup: React.FC<GameSetupProps> = ({ onStartGame, onShowHistory }) => {
   const [targetScore, setTargetScore] = useState(60);
   const [playerCount, setPlayerCount] = useState(3);
-  const [playerNames, setPlayerNames] = useState(['', '', '', '', '']);
+  const [playerNames, setPlayerNames] = useState(['', '', '', '']);
   const [winOnCurrentDay, setWinOnCurrentDay] = useState(true);
   const [winOnOne, setWinOnOne] = useState(true);
 
@@ -36,8 +36,19 @@ const GameSetup: React.FC<GameSetupProps> = ({ onStartGame, onShowHistory }) => 
 
   return (
     <div className="max-w-md mx-auto bg-white rounded-2xl shadow-xl p-6 space-y-6">
+      <div className='flex items-center justify-center space-x-4' style={{paddingLeft: '2rem'}}>
+        <div>
+          <img
+            src="./domy.png"
+            alt="Syga Dômy Logo"
+            className="h-24 mx-auto mb-4"
+          />
+        </div>
+        <div>
+          <h1 className="text-3xl font-bold font-mono text-gray-800 mb-4">SYGA Dômy Score Tracker</h1>
+        </div>
+      </div>
       <div className="text-center">
-        <h1 className="text-3xl font-bold font-mono text-gray-800 mb-4">Fitom-BOTO D-Score Tracker</h1>
         <h2 className="text-2xl font-bold text-gray-800 mb-2">Configuration de Partie</h2>
         <p className="text-gray-600">Configurez les paramètres de votre partie</p>
       </div>
@@ -104,7 +115,7 @@ const GameSetup: React.FC<GameSetupProps> = ({ onStartGame, onShowHistory }) => 
             Nombre de Joueurs: {playerCount}
           </label>
           <div className="flex space-x-2">
-            {[2, 3, 4, 5].map((count) => (
+            {[2, 3, 4].map((count) => (
               <button
                 key={count}
                 onClick={() => setPlayerCount(count)}

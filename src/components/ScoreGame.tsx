@@ -61,13 +61,13 @@ const ScoreGame: React.FC<ScoreGameProps> = ({
   };
 
   const handleAddPoints = (id: string, points: number) => {
-    const newPoints = String(points) == 'X' ? 0 : points;
+    const newPoints = typeof points == 'string' ? 0 : Number(points);
     setPlayers(prev => prev.map(player => {
       if (player.id === id) {
         const newScore = player.score + newPoints;
         const updatedPlayer: Player = {
           ...player,
-          score: newScore,
+          score: String(points) != '-' ? newScore : Math.max(0, player.score - (player.history.length > 0 && typeof player.history[player.history.length - 1] === 'number' ? player.history[player.history.length - 1] as number : 0)),
           history: (newPoints > 0 || String(points) == 'X') ? [...player.history, points] : player.history.slice(0, -1),
         };
         if (checkWinConditions(player, newScore, points) && !winner) {
@@ -101,7 +101,7 @@ const ScoreGame: React.FC<ScoreGameProps> = ({
     <div className="min-h-screen bg-gradient-to-br from-indigo-100 to-purple-100 p-4">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-6">
-          <h1 className="text-3xl font-bold font-mono text-gray-800 mb-4">Fitom-BOTO D-Score Tracker</h1>
+          <h1 className="text-3xl font-bold font-mono text-gray-800 mb-4">Syga Dômy Score Tracker</h1>
           <p className="text-gray-600">Score Objectif: {targetScore}</p>
           {settings.winOnCurrentDay && (
             <p className="text-sm text-blue-600">Victoire si score = {new Date().getDate()}</p>
