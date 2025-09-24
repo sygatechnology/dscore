@@ -29,6 +29,7 @@ const ScoreGame: React.FC<ScoreGameProps> = ({
   const [players, setPlayers] = useState<Player[]>([]);
   const [winner, setWinner] = useState<Player | null>(null);
   const [showWinnerModal, setShowWinnerModal] = useState(false);
+  const [currentTurnIndex, setCurrentTurnIndex] = useState(0);
 
   useEffect(() => {
     const initialPlayers = playerNames.map((name, index) => ({
@@ -74,6 +75,10 @@ const ScoreGame: React.FC<ScoreGameProps> = ({
           setWinner(updatedPlayer);
           setShowWinnerModal(true);
         }
+        setCurrentTurnIndex((prev) => {
+          if (players.length === 0) return 0;
+          return (prev + 1) % players.length;
+        });
         return updatedPlayer;
       }
       return player;
@@ -119,13 +124,14 @@ const ScoreGame: React.FC<ScoreGameProps> = ({
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {players.map((player) => (
+          {players.map((player, index) => (
             <PlayerCard
               key={player.id}
               player={player}
               onNameChange={handleNameChange}
               onAddPoints={handleAddPoints}
               targetScore={targetScore}
+              isCurrentTurn={index === currentTurnIndex}
             />
           ))}
         </div>

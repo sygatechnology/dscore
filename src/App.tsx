@@ -8,10 +8,13 @@ import { ThemeProvider } from "@/components/theme-provider";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import { useEffect } from "react";
+import useWakeLock from "./utils/useWakeLock";
 
 const queryClient = new QueryClient();
 
 const App = () => {
+
+  useWakeLock();
 
   useEffect(() => {
     const handleBeforeUnload = (e) => {

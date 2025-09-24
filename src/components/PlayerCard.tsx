@@ -9,13 +9,15 @@ interface PlayerCardProps {
   onNameChange: (id: string, newName: string) => void;
   onAddPoints: (id: string, points: number | string) => void;
   targetScore: number;
+  isCurrentTurn: boolean;
 }
 
 const PlayerCard: React.FC<PlayerCardProps> = ({
   player,
   onNameChange,
   onAddPoints,
-  targetScore
+  targetScore,
+  isCurrentTurn
 }) => {
   const [isEditingName, setIsEditingName] = useState(false);
   const [tempName, setTempName] = useState(player.name);
@@ -48,6 +50,13 @@ const PlayerCard: React.FC<PlayerCardProps> = ({
 
   return (
     <div className={`${player.color} rounded-2xl p-6 text-white shadow-lg transform transition-all hover:scale-105`}>
+      {isCurrentTurn && (
+        <div className="absolute top-2 right-2">
+          <Button size="sm" variant="secondary" className="bg-white text-black font-bold">
+            Main
+          </Button>
+        </div>
+      )}
       <div className="space-y-4">
         {/* Player Name */}
         <div className="text-center">
