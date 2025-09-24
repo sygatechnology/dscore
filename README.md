@@ -70,3 +70,5 @@ Local Storage (sauvegarde persistante des données côté navigateur)
 Les scores et l’historique des parties sont enregistrés automatiquement dans le Local Storage.
 
 Ainsi, même après un rechargement ou une fermeture du navigateur, les données restent disponibles.
+
+🌐 [https://dscore.syga-technology.com](https://dscore.syga-technology.com)
